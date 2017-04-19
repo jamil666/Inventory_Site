@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+</head>
+
+<div align="center" style="border: double">
+   <h1>Azerfon Inventory</h1>
+</div>
+
+<body>
+<br />
+    <div>
+        <a href={% url 'AddNew' %}>Add New Item</a>
+
+    </div>
+
+
+<form method="post" action={% url 'Main' %}>
+
+    {% csrf_token %}
+
+        <div align="right" style="margin-top: -1%">
+
+            <label for="searchbar"><img src={% static 'admin/img/search.svg' %} alt="Search" /></label>
+            <input type="text" size="40" name="search" value="" id="searchbar" autofocus />
+            <input type="submit" value="Search" name="Search"  />
+        </div>
+
+    {% if Search %}
+        <table style= "position:absolute;width:90%;height:116px; margin-left: 45px" id="Table1" border="1" >
+
+            <th>Hostname</th>
+            <th>Description</th>
+            <th>Model</th>
+            <th>Serial</th>
+            <th>Adding Date</th>
+
+            {% for item in Search %}
+                <tr align="center">
+                    <td>{{ item.hostname }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.model }}</td>
+                    <td>{{ item.serial }}</td>
+                    <td>{{ item.date }}</td>
+                    <br />
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    {% endif %}
+
+    {% if not Search %}
+        <table style= "position:absolute;width:90%;height:116px; margin-left: 45px" id="Table1" border="1" >
+
+            <th>Hostname</th>
+            <th>Description</th>
+            <th>Model</th>
+            <th>Serial</th>
+            <th>Adding Date</th>
+
+            {% for item in CompDB %}
+                <tr align="center">
+                    <td>{{ item.hostname }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.model }}</td>
+                    <td>{{ item.serial }}</td>
+                    <td>{{ item.date }}</td>
+                    <br />
+                </tr>
+            {% endfor %}
+
+        </table>
+    {% endif %}
+
+
+</form>
+
+</body>
+</html>

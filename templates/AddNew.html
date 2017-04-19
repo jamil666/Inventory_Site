@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Device</title>
+</head>
+<body>
+
+
+<form method="post" action={% url 'AddNew' %}>
+
+    {% csrf_token %}
+
+        <div align="center" style="margin-top: 10%">
+            Hostname: {{ Form.hostname }}
+            Description: {{ Form.description }}
+            Model: {{ Form.model }}
+            Serial: {{ Form.serial }}
+        </div>
+
+    <div align="center" style="margin-top: 2%">
+       <input type="submit" name="Add and Close" value="Add and Close">
+    </div>
+
+
+
+</form>
+
+</body>
+</html>
