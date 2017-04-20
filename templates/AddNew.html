@@ -6,12 +6,15 @@
 </head>
 <body>
 
+<div align="center">
+    <h1>Please add information about new device!</h1>
+</div>
 
 <form method="post" action={% url 'AddNew' %}>
 
     {% csrf_token %}
 
-        <div align="center" style="margin-top: 10%">
+        <div align="center" style="margin-top: 10%; font-family: 'Droid Serif'">
             Hostname: {{ Form.hostname }}
             Description: {{ Form.description }}
             Model: {{ Form.model }}
@@ -19,12 +22,17 @@
         </div>
 
     <div align="center" style="margin-top: 2%">
-       <input type="submit" name="Add and Close" value="Add and Close">
+       <input type="submit" name="Add and Close" value="Add and Close" >
     </div>
 
 
 
 </form>
+
+
+<div align="right" style="margin-top: 48%">
+    <a href={% url 'Main' %}>Back to main page</a>
+</div>
 
 </body>
 </html>

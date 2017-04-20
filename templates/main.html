@@ -30,15 +30,20 @@
             <input type="text" size="40" name="search" value="" id="searchbar" autofocus />
             <input type="submit" value="Search" name="Search"  />
         </div>
-
+<br />
+<br />
     {% if Search %}
+            {% if Message %}
+                {{ Message }}
+            {% endif %}
+
         <table style= "position:absolute;width:90%;height:116px; margin-left: 45px" id="Table1" border="1" >
 
             <th>Hostname</th>
             <th>Description</th>
             <th>Model</th>
             <th>Serial</th>
-            <th>Adding Date</th>
+            <th>Add/Modify Date</th>
 
             {% for item in Search %}
                 <tr align="center">
@@ -47,7 +52,9 @@
                     <td>{{ item.model }}</td>
                     <td>{{ item.serial }}</td>
                     <td>{{ item.date }}</td>
-                    <br />
+                    <td> <a href="/edit?id={{ item.id }}">Edit</a> </td>
+                    <td> <a href="/delete?id={{ item.id }}" >Delete</a> </td>
+
                 </tr>
             {% endfor %}
 
@@ -56,13 +63,16 @@
     {% endif %}
 
     {% if not Search %}
+            {% if Message %}
+                {{ Message }}
+            {% endif %}
         <table style= "position:absolute;width:90%;height:116px; margin-left: 45px" id="Table1" border="1" >
 
             <th>Hostname</th>
             <th>Description</th>
             <th>Model</th>
             <th>Serial</th>
-            <th>Adding Date</th>
+            <th>Add/Modify Date</th>
 
             {% for item in CompDB %}
                 <tr align="center">
@@ -71,7 +81,8 @@
                     <td>{{ item.model }}</td>
                     <td>{{ item.serial }}</td>
                     <td>{{ item.date }}</td>
-                    <br />
+
+
                 </tr>
             {% endfor %}
 

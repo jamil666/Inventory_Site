@@ -7,5 +7,7 @@ urlpatterns = [
 
         url(r'^$', views.main, name='Main'),
         url(r'^addnew$', views.AddNew, name='AddNew'),
+        url(r'^edit', views.Edit, name='Edit'),
+        url(r'^delete$', views.Delete, name="Delete")
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
