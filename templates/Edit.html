@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit record</title>
+</head>
+<body>
+
+<div align="center" style="border: double">
+   <h1>Please update information!</h1>
+</div>
+
+
+<form method="post" action="/edit?id={{ Edited_device.id }}">
+    {% csrf_token %}
+
+    <div align="center" style="margin-top: 8%; font-family: 'Droid Serif'">
+
+        Hostname:
+           <input type="text" name="hostname" class="form-control" value='{{ Edited_device.hostname }}' />
+
+
+        Description:
+           <input type="text" name="description" class="form-control" value='{{ Edited_device.description }}' />
+
+
+        Model:
+           <input type="text" name="model" class="form-control" value='{{ Edited_device.model }}' />
+
+
+        Serial:
+           <input type="text" name="serial" class="form-control" value='{{ Edited_device.serial }}' />
+
+
+    </div>
+
+    <div align="center" style="margin-top: 2%">
+        <input type="submit" name="Save" value="Save" style="width: 80px">
+    </div>
+
+</form>
+
+
+
+<div align="right" style="margin-top: 48%">
+    <a href={% url 'Main' %}>Back to main page</a>
+</div>
+
+</body>
+</html>
