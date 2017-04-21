@@ -4,8 +4,13 @@ from .forms import Inventory_Form
 from django.db.models import Q
 import datetime
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
+
+
 # Main page
 
+@login_required                                     # Main page can be only by authenticated user
 def main(request):
     CompDB = Computer.objects.all()                 # Get all objects from Database
 
@@ -86,3 +91,26 @@ def Delete(request):
     deleted_item = Computer.objects.get(id=id)      # Find computer object from database by ID
     deleted_item.delete()                           # Delete selected object from database
     return redirect(main)
+
+
+# Login page
+
+def Login(request):
+    if request.method == 'POST':
+        try:
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(username=username, password=password)       # Authenticate user
+            login(request, user)
+
+            return redirect(main)                                     # Redirect to main page if authentication success
+
+        except:
+
+            # Insert error message to login page
+
+            context = {"ErrorMessage": "Your username or password didn't match. Please try again."}
+            return render(request, 'login.html', context)
+    else:
+        return render(request, 'login.html')
