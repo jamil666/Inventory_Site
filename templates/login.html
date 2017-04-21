@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+
+{% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">logout</a>
+
+      {% endif %}
+
+
+<div align="center" style="border: double">
+   <h1>Login to Inventory</h1>
+</div>
+
+  {% if ErrorMessage %}
+    <p style="color: red">{{ ErrorMessage }}</p>
+  {% endif %}
+
+<br />
+<br />
+
+    <div align="center">
+
+        <form method="post" action={% url 'login' %}>
+            {% csrf_token %}
+
+
+              <input type="text" placeholder="Username" name="username">
+              <input type="password" placeholder="Password" name="password">
+
+                    <button type="submit">Log in</button>
+
+        </form>
+
+    </div>
+
+
+</body>
+</html>

@@ -12,19 +12,28 @@
    <h1>Azerfon Inventory</h1>
 </div>
 
+
+
+
 <body>
 <br />
     <div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% endif %}
+
+        <br /><br />
+
         <a href={% url 'AddNew' %}>Add New Item</a>
 
     </div>
 
 
-<form method="post" action={% url 'Main' %}>
+<form method="post" action={% url 'main' %}>
 
     {% csrf_token %}
 
-        <div align="right" style="margin-top: -1%">
+        <div align="right" style="margin-top: -4%">
 
             <label for="searchbar"><img src={% static 'admin/img/search.svg' %} alt="Search" /></label>
             <input type="text" size="40" name="search" value="" id="searchbar" autofocus />
