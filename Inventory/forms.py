@@ -8,3 +8,4 @@ class Inventory_Form(ModelForm):
         model = Computer
 
         fields = ['hostname', 'description', 'model', 'serial']
+

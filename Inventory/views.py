@@ -4,6 +4,7 @@ from .forms import Inventory_Form
 from django.db.models import Q
 import datetime
 
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 
@@ -20,7 +21,8 @@ def main(request):
         Search = Computer.objects.filter(Q(hostname__contains=SearchField) |            # Find object by query
                                              Q(description__contains=SearchField) |
                                              Q(model__contains=SearchField) |
-                                             Q(serial__contains=SearchField))
+                                             Q(serial__contains=SearchField) |
+                                             Q(date__contains=SearchField))
 
         context = {"CompDB": CompDB, "Search": Search}
         return render(request, 'main.html', context)
@@ -114,3 +116,4 @@ def Login(request):
             return render(request, 'login.html', context)
     else:
         return render(request, 'login.html')
+
